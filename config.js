@@ -6,6 +6,6 @@ const pool = new pg.Pool({
   password: "***",
   port: 5432,
 });
-export const secret = "abch1525wd";
+export const secret = "***";
 
 export default pool;
