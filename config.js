@@ -3,7 +3,7 @@ const pool = new pg.Pool({
   user: "postgres",
   host: "localhost",
   database: "complains",
-  password: "11620000",
+  password: "***",
   port: 5432,
 });
 export const secret = "abch1525wd";
