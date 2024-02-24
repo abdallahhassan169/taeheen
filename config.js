@@ -3,9 +3,9 @@ const pool = new pg.Pool({
   user: "postgres",
   host: "localhost",
   database: "complains",
-  password: "***",
+  password: "11620000",
   port: 5432,
 });
-export const secret = "***";
+export const secret = "abch1525wd";
 
 export default pool;

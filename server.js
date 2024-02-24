@@ -54,7 +54,20 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + extname(file.originalname));
   },
 });
-const upload = multer({ storage });
+
+const fileFilter = (req, file, cb) => {
+  // Check if the file type is allowed
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true); // Accept the file
+  } else {
+    cb(
+      new Error("Invalid file type. Only JPEG and PNG images are allowed."),
+      false
+    );
+  }
+};
+const upload = multer({ storage, fileFilter });
 app.use("/uploads", express.static("uploads"));
 
 app.post("/upsert_guest_complain", upload.single("image"), async (req, res) => {
@@ -69,8 +82,8 @@ app.post("/upsert_guest_complain", upload.single("image"), async (req, res) => {
       }`;
       const rows = await pool.query(
         ` INSERT INTO public.complains(
-	  name, relation, age, description, clothes_color, img, user_id, passport , date,ip,city_id)
-	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10)); `,
+	  name, relation, age, description, clothes_color, img, user_id, passport , date,ip,city_id , langitude , latitude)
+	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,($12)); `,
         [
           d.name,
           d.relation,
@@ -82,27 +95,30 @@ app.post("/upsert_guest_complain", upload.single("image"), async (req, res) => {
           req.body.passport,
           clientIp,
           req.body.city,
+          d.langitude,
+          d.latitude,
         ]
       );
     } else {
-      const d = req.body;
-      const imageUrl = `/image/${req?.file?.filename}`;
-      const rows = await pool.query(
-        `UPDATE public.complains
-	SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
-	where id = ($8)
-	 `,
-        [
-          d.name,
-          d.relation,
-          d.age,
-          d.description,
-          d.clothes_color,
-          imageUrl,
-          req.body.passport,
-          d.id,
-        ]
-      );
+      //     const d = req.body;
+      //     const imageUrl = `/image/${req?.file?.filename}`;
+      //     const rows = await pool.query(
+      //       `UPDATE public.complains
+      // SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
+      // where id = ($8)
+      //  `,
+      //       [
+      //         d.name,
+      //         d.relation,
+      //         d.age,
+      //         d.description,
+      //         d.clothes_color,
+      //         imageUrl,
+      //         req.body.passport,
+      //         d.id,
+      //       ]
+      //     );
+      return;
     }
     res.send({ message: "sucseess" });
   } catch (e) {
@@ -121,8 +137,8 @@ app.post("/upsert_complain", upload.single("image"), async (req, res) => {
       const imageUrl = `${req?.file?.filename}`;
       const rows = await pool.query(
         ` INSERT INTO public.complains(
-	  name, relation, age, description, clothes_color, img, user_id, passport , date,city_id)
-	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9)); `,
+	  name, relation, age, description, clothes_color, img, user_id, passport , date,city_id ,langitude , latitude )
+	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11)); `,
         [
           d.name,
           d.relation,
@@ -133,27 +149,30 @@ app.post("/upsert_complain", upload.single("image"), async (req, res) => {
           req.user?.id ?? null,
           req.body.passport,
           req.body.city,
+          d.langitude,
+          d.latitude,
         ]
       );
     } else {
-      const d = req.body;
-      const imageUrl = `/image/${req?.file?.filename}`;
-      const rows = await pool.query(
-        `UPDATE public.complains
-	SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
-	where id = ($8)
-	 `,
-        [
-          d.name,
-          d.relation,
-          d.age,
-          d.description,
-          d.clothes_color,
-          imageUrl,
-          req.body.passport,
-          d.id,
-        ]
-      );
+      return;
+      //     const d = req.body;
+      //     const imageUrl = `/image/${req?.file?.filename}`;
+      //     const rows = await pool.query(
+      //       `UPDATE public.complains
+      // SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
+      // where id = ($8)
+      //  `,
+      //       [
+      //         d.name,
+      //         d.relation,
+      //         d.age,
+      //         d.description,
+      //         d.clothes_color,
+      //         imageUrl,
+      //         req.body.passport,
+      //         d.id,
+      //       ]
+      //     );
     }
     res.send({ message: "sucseess" });
   } catch (e) {

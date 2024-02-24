@@ -98,9 +98,11 @@ export const cancel_complain = async (req, res) => {
 
 export const get_user_complains = async (req, res) => {
   try {
+    const clientIp = "ip" + req.clientIp;
+
     const { rows } = await pool.query(
-      ` select * from public.complains where user_id = ($1) order by id desc`,
-      [req.user?.id ?? 1]
+      ` select * from public.complains where user_id = ($1) or ip =($2) order by id desc`,
+      [req.user?.id, clientIp]
     );
     res.send(rows);
   } catch (e) {
