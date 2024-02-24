@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "3de0121a-0a3b-459e-8f9a-0d78bfb993c3",
+		"name": "taheen-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27873689"
+	},
+	"item": [
+		{
+			"name": "insert_and_update_complain",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "dd",
+							"type": "text"
+						},
+						{
+							"key": "relation",
+							"value": "dd",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/HELAL/Downloads/WhatsApp Image 2024-02-03 at 9.03.47 PM.jpeg"
+						},
+						{
+							"key": "passport",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/upsert_complain",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"upsert_complain"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "insert_and_update_complain_as_guest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "dd",
+							"type": "text"
+						},
+						{
+							"key": "relation",
+							"value": "dd",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/HELAL/Downloads/WhatsApp Image 2024-02-03 at 9.03.47 PM.jpeg"
+						},
+						{
+							"key": "passport",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/upsert_guest_complain",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"upsert_guest_complain"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_name\":\"mohamed\",\r\n    \"password\":\"123456\",\r\n    \"city_id\":1,\r\n    \"passport\":\"12345678\",\r\n    \"phone\":\"23456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"register"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_name\":\"mohamed\",\r\n    \"password\":\"123456\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"login"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "end_success_complain",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/complete_complain",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"complete_complain"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "get_my_user_complains",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/get_complains",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"get_complains"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "get_cities",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/get_cities",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"get_cities"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "get_cities Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/get_cities",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"get_cities"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		},
+		{
+			"name": "add_comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3IiwidXNlcl9uYW1lIjoibW9oYW1lZCIsInVzZXJfdHlwZSI6IjEiLCJjaXR5X2lkIjoiMSIsImlhdCI6MTcwODc3MTEzMH0.AskM5zVH_t5VecHylnjiuVi6CQ6kCe8vQSVOyEbXbt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3015/get_cities",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3015",
+					"path": [
+						"get_cities"
+					]
+				},
+				"description": "insert_and_update_complain based on id \r\nif id is null it is insert \r\nelse it is update"
+			},
+			"response": []
+		}
+	]
+}
