@@ -109,6 +109,7 @@ app.post("/upsert_guest_complain", upload.single("image"), async (req, res) => {
     res.send("an error occured : " + e);
   }
 });
+app.post("/register", register_user);
 
 app.use([authMiddleware]);
 
@@ -161,8 +162,6 @@ app.post("/upsert_complain", upload.single("image"), async (req, res) => {
 });
 
 app.post("/get_complains", get_user_complains);
-
-app.post("/register", register_user);
 
 app.post("/upsert_admin", isAdmin, upsert_emp);
 

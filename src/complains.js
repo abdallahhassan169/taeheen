@@ -2,6 +2,7 @@ import pool from "../config.js";
 
 export const get_complain_by_id = async (req, res) => {
   try {
+    const user = req.user.id;
     const { rows } = await pool.query(
       `SELECT
   c.*, 
@@ -10,9 +11,9 @@ FROM
   public.complains c
   LEFT JOIN public.users u ON c.user_id = u.id
 WHERE 
- c.id = ($1)
+ c.id = ($1) and user_id = ($2)
   `,
-      [req.body.id]
+      [req.body.id, user]
     );
     console.log(rows);
     res.send(rows);

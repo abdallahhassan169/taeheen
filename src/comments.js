@@ -29,10 +29,10 @@ export const insert_comment = async (req, res) => {
   try {
     const d = req.body;
     const { rows } = await pool.query(
-      ` INSERT INTO public.Comments(
-	body , date, user_id )
-	VALUES ( ($1) , current_date , ($2) ); `,
-      [d.comment, req?.user?.id]
+      ` INSERT INTO public."Comments"(
+	body , date, user_id , rate )
+	VALUES ( ($1) , current_date , ($2) , ($3) ); `,
+      [d.comment, req?.user?.id, d.rate]
     );
     res.send("success");
   } catch (e) {
