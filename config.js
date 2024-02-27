@@ -7,6 +7,11 @@ const pool = new pg.Pool({
   port: 5432,
   max: 20, // Adjust as needed
   idleTimeoutMillis: 30000, // Adjust as needed
+  ssl: {
+    // These options are often required for connecting to a remote PostgreSQL server
+    // Adjust them based on your server's configuration
+    rejectUnauthorized: false,
+  },
 });
 export const secret = "abch1525wd";
 
