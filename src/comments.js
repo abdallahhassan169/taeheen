@@ -39,3 +39,16 @@ export const insert_comment = async (req, res) => {
     res.send("error " + e);
   }
 };
+
+export const get_user_comments = async (req, res) => {
+  try {
+    const d = req.body;
+    const { rows } = await pool.query(
+      `select c.* , u.user_name from public."Comments" c join public.users u on u.id = c.user_id  where c.is_approved is true   order by date desc limit ($1) offset ($2)`,
+      [req.body.limit, req.body.offset]
+    );
+    res.send(rows);
+  } catch (e) {
+    res.send("error " + e);
+  }
+};

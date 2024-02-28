@@ -13,8 +13,12 @@ export const login = async (req, res) => {
   const user = rows.rows[0];
   if (user) {
     if (
-      (user_name === user.user_name && password === user.password) ||
-      (phone === user.phone && passport === user.passport)
+      (user_name === user.user_name &&
+        password === user.password &&
+        user.user_type === "3") || // user type 3 is super admin
+      (phone === user.phone &&
+        passport === user.passport &&
+        user.user_type === "1") // user type 1 is user
     ) {
       // Sign a JWT with the user information
       const token = jwt.sign(
@@ -26,10 +30,9 @@ export const login = async (req, res) => {
         },
         secret
       );
-
       // Return the token
       res.json({ token });
-    }
+    } else res.send("Authentication failed.");
   } else {
     res.status(401).json({ message: "Authentication failed." });
   }

@@ -24,6 +24,7 @@ import {
 import {
   delete_comment,
   get_comments,
+  get_user_comments,
   insert_comment,
 } from "./src/comments.js";
 import { cities } from "./src/lokkups.js";
@@ -196,6 +197,7 @@ app.post("/get_comments", isAdmin, get_comments);
 
 app.post("/get_emp_complains", isEmployee, get_emp_coms);
 app.post("/get_cities", cities);
+app.post("/get_user_comments", get_user_comments);
 app.post("/get_admin_complains", isAdmin, admin_coms);
 app.post("/get_complain_by_id", get_complain_by_id);
 
