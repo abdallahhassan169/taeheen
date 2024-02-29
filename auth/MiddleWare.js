@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization;
   const route = req.path;
   console.log(route);
-  if (route === "/login" || route === "/image") {
+  if (route === "/login" || route === "/image" || route === "/get_cities") {
     next();
     return;
   }
