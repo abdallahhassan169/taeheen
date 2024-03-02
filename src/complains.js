@@ -73,8 +73,14 @@ where
    c.latitude,
 	c.langitude 
 	 
-) < 25000); `,
-      [req?.user?.city_id, req.body.langitude, req.body.latitude]
+) < 25000) order by c.date desc limit ($4) offset ($5)  ; `,
+      [
+        req?.user?.city_id,
+        req.body.langitude,
+        req.body.latitude,
+        req.body.limit,
+        req.body.offset,
+      ]
     );
     console.log(req.user);
     res.send(rows);
