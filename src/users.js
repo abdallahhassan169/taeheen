@@ -29,7 +29,7 @@ export const change_user_status = async (req, res) => {
     );
     res.send("success");
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -43,8 +43,8 @@ export const register_user = async (req, res) => {
 	VALUES ( ($1), ($2) , 1 , ($3) ,($4) , ($5) , ($6) ); `,
       [d.user_name, d.password, d.city_id, d.passport, d.phone, d.last_name]
     );
-    res.send("success");
+    res.send({ message: "sucseess" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };

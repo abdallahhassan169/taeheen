@@ -16,7 +16,7 @@ LIMIT ($1) OFFSET ($2);  `,
 
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -38,8 +38,8 @@ export const upsert_emp = async (req, res) => {
       );
     }
 
-    res.send("success");
+    res.send({ message: "sucseess" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };

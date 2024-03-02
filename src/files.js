@@ -30,6 +30,6 @@ export const get_image = (req, res) => {
   try {
     res.sendFile(`${process.cwd()}/image/${filename}`);
   } catch (e) {
-    res.status(500).send(e.message);
+    res.status(500).send({ err: e.message });
   }
 };

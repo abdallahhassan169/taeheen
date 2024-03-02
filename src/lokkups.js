@@ -9,6 +9,6 @@ FROM public.cities `
 
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };

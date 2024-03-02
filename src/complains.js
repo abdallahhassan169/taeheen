@@ -19,7 +19,7 @@ WHERE
     res.send(rows);
   } catch (e) {
     console.log(e);
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -48,7 +48,7 @@ OFFSET $2;
     res.send(rows);
   } catch (e) {
     console.log(e);
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -85,7 +85,7 @@ where
     console.log(req.user);
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -96,9 +96,9 @@ export const end_complain = async (req, res) => {
       `update public.complains set status = true where id = ($1)`,
       [d.id]
     );
-    res.send("success");
+    res.send({ message: "success" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -109,9 +109,9 @@ export const cancel_complain = async (req, res) => {
       `update public.complains set status = false where id = ($1)`,
       [d.id]
     );
-    res.send("success");
+    res.send({ message: "success" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -125,7 +125,7 @@ export const get_user_complains = async (req, res) => {
     );
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -182,7 +182,7 @@ export const upsert_guets_complain = async (req, res) => {
     }
     res.send({ message: "sucseess" });
   } catch (e) {
-    res.send("an error occured : " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -234,6 +234,6 @@ export const upsert_complain = async (req, res) => {
     }
     res.send({ message: "sucseess" });
   } catch (e) {
-    res.send("an error occured : " + e);
+    res.send({ "error ": e });
   }
 };

@@ -8,7 +8,7 @@ export const get_comments = async (req, res) => {
     );
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -20,9 +20,9 @@ export const delete_comment = async (req, res) => {
       [d.id]
     );
     console.log(d.id, "id ");
-    res.send("success");
+    res.send({ message: "success" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 export const insert_comment = async (req, res) => {
@@ -34,9 +34,9 @@ export const insert_comment = async (req, res) => {
 	VALUES ( ($1) , current_date , ($2) , ($3) ); `,
       [d.comment, req?.user?.id, d.rate]
     );
-    res.send("success");
+    res.send({ message: "sucseess" });
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
 
@@ -49,6 +49,6 @@ export const get_user_comments = async (req, res) => {
     );
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };

@@ -19,6 +19,6 @@ export const stats = async (req, res) => {
 
     res.send(rows);
   } catch (e) {
-    res.send("error " + e);
+    res.send({ "error ": e });
   }
 };
