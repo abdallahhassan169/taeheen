@@ -58,10 +58,23 @@ export const get_emp_coms = async (req, res) => {
     const { rows } = await pool.query(
       ` select
 
-c.* , u.user_name as user_name from public.complains c join users u on u.id = c.user_id
+c.* , u.user_name as user_name , (public.haversine_distance(
+  ($3),
+	($2),
+   c.latitude,
+	c.langitude 
+	 
+))
+ as distance from public.complains c join users u on u.id = c.user_id
 where 
- c.city_id = ($1) `,
-      [req?.user?.city_id]
+ c.city_id = ($1) or (public.haversine_distance(
+  ($3),
+	($2),
+   c.latitude,
+	c.langitude 
+	 
+) < 25000); `,
+      [req?.user?.city_id, req.body.langitude, req.body.latitude]
     );
     console.log(req.user);
     res.send(rows);
