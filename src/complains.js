@@ -134,8 +134,8 @@ export const upsert_guets_complain = async (req, res) => {
     }`;
     const rows = await pool.query(
       ` INSERT INTO public.complains(
-	  name, relation, age, description, clothes_color, img, user_id, passport , date,ip,city_id , langitude , latitude , nationality)
-	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,($12) , ($13)); `,
+	  name, relation, age, description, clothes_color, img, user_id, passport , date,ip,city_id , langitude , latitude , nationality , time , position)
+	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,($12) , ($13),($14),($15)); `,
       [
         d.name,
         d.relation,
@@ -166,8 +166,8 @@ export const upsert_complain = async (req, res) => {
     const imageUrl = `${req?.file?.filename}`;
     const rows = await pool.query(
       ` INSERT INTO public.complains(
-	  name, relation, age, description, clothes_color, img, user_id, passport , date,city_id ,langitude , latitude ,nationality )
-	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,  ($12)); `,
+	  name, relation, age, description, clothes_color, img, user_id, passport , date,city_id ,langitude , latitude ,nationality , time , position )
+	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,  ($12) , ($13) , ($14)); `,
       [
         d.name,
         d.relation,
