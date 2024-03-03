@@ -9,7 +9,8 @@ const authMiddleware = (req, res, next) => {
     route === "/login" ||
     route === "/image" ||
     route === "/get_cities" ||
-    route === "/register"
+    route === "/register" ||
+    route === "/upsert_guest_complain"
   ) {
     next();
     return;

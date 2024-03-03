@@ -1,8 +1,8 @@
 export const Validator = (req, res, next) => {
   console.log(req.body, "in validator");
   if (req.body.phone) {
-    const phoneRegex = /^[0-9]{10}$/;
-    if (req.body.phone.length < 10 || !phoneRegex.test(phoneNumber)) {
+    const phoneRegex = /^[0-9]/;
+    if (req.body.phone.length < 10 || !phoneRegex.test(req.body.phone)) {
       res.status(400).json({
         "message-en": "please enter a valid phone",
         "message-ar": "من افضلك ادخل رقم هاتف صحيح",
@@ -21,7 +21,7 @@ export const Validator = (req, res, next) => {
 
     if (req.body.passport) {
       if (
-        passportNumber.length !== 9 ||
+        req.body.passport.length <= 9 ||
         !/^[a-zA-Z0-9]+$/.test(req.body.passport)
       ) {
         return res.status(400).json({

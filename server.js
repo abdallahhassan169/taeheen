@@ -41,7 +41,7 @@ app.use(requestIp.mw());
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 app.use("/uploads", express.static("uploads"));
 
-app.use([authMiddleware, Validator]);
+app.use([authMiddleware]);
 
 //------------------------------------------APIS -----------------------------------
 app.get("/image", get_image);
@@ -50,6 +50,7 @@ app.post("/login", login);
 app.post(
   "/upsert_guest_complain",
   upload.single("image"),
+  Validator,
   upsert_guets_complain
 );
 app.post("/register", register_user);
