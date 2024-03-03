@@ -32,7 +32,7 @@ export const login = async (req, res) => {
       );
       // Return the token
       res.json({ token: token, name: user.user_name });
-    } else res.send("Authentication failed.");
+    } else res.send({ message: "Authentication failed." });
   } else {
     res.status(401).json({ message: "Authentication failed." });
   }

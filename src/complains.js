@@ -67,13 +67,7 @@ c.* , u.user_name as user_name , (public.haversine_distance(
 ))
  as distance from public.complains c join users u on u.id = c.user_id
 where 
- c.city_id = ($1) or (public.haversine_distance(
-  ($3),
-	($2),
-   c.latitude,
-	c.langitude 
-	 
-) < 25000) order by c.date desc limit ($4) offset ($5)  ; `,
+ c.city_id = ($1)  order by c.date desc limit ($4) offset ($5)  ; `,
       [
         req?.user?.city_id,
         req.body.langitude,

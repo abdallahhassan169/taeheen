@@ -5,7 +5,7 @@ export const emps = async (req, res) => {
     const { rows } = await pool.query(
       ` SELECT * 
 FROM public.users u 
-WHERE u.user_type = 3 
+WHERE u.user_type = 2
   AND (cast(($3) as text) IS NULL OR 
       (u.user_name LIKE CONCAT('%', cast(($3) as text), '%') ))
         
