@@ -1,12 +1,12 @@
 // ------------------- IMPORTS ---------------//
 
 import express from "express";
-import authMiddleware from "./auth/MiddleWare.js";
+import authMiddleware from "./src/auth/MiddleWare.js";
 import multer from "multer";
 import bodyParser from "body-parser";
 import cors from "cors";
 import requestIp from "request-ip";
-import { login } from "./auth/login.js";
+import { login } from "./src/auth/login.js";
 import { emps, upsert_emp } from "./src/employees.js";
 import { change_user_status, register_user, users } from "./src/users.js";
 import { stats } from "./src/statistics.js";
@@ -29,22 +29,24 @@ import {
 import { cities } from "./src/lokkups.js";
 import { isAdmin, isEmployee } from "./src/adminCheck.js";
 import { fileFilter, get_image, storage } from "./src/files.js";
+import { Validator } from "./src/validation/Validator.js";
 
 //------------------------------- declare APP and middlewares
 const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
-app.use(express.json());
-
-app.post("/login", login);
-app.get("/image", get_image);
 app.use(requestIp.mw());
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 app.use("/uploads", express.static("uploads"));
 
+app.use([authMiddleware, Validator]);
+
 //------------------------------------------APIS -----------------------------------
+app.get("/image", get_image);
+app.post("/login", login);
+
 app.post(
   "/upsert_guest_complain",
   upload.single("image"),
@@ -52,9 +54,12 @@ app.post(
 );
 app.post("/register", register_user);
 
-app.use([authMiddleware]);
-
-app.post("/upsert_complain", upload.single("image"), upsert_complain);
+app.post(
+  "/upsert_complain",
+  upload.single("image"),
+  Validator,
+  upsert_complain
+);
 
 app.post("/get_complains", get_user_complains);
 

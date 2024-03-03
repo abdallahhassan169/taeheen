@@ -1,11 +1,16 @@
 // authMiddleware.js
 import jwt from "jsonwebtoken";
-import pool, { secret } from "../config.js";
+import pool, { secret } from "../../config.js";
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization;
   const route = req.path;
   console.log(route);
-  if (route === "/login" || route === "/image" || route === "/get_cities") {
+  if (
+    route === "/login" ||
+    route === "/image" ||
+    route === "/get_cities" ||
+    route === "/register"
+  ) {
     next();
     return;
   }

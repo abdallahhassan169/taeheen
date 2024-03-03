@@ -1,6 +1,6 @@
-import pool from "../config.js";
+import pool from "../../config.js";
 import jwt from "jsonwebtoken";
-import { secret } from "../config.js";
+import { secret } from "../../config.js";
 export const login = async (req, res) => {
   const { user_name, password, phone, passport } = req.body;
 
