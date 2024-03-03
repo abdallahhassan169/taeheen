@@ -42,7 +42,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 app.use("/uploads", express.static("uploads"));
 
 app.use([authMiddleware]);
-
+//app.use(Validator)  // stopped for testing reasons
 //------------------------------------------APIS -----------------------------------
 app.get("/image", get_image);
 app.post("/login", login);
