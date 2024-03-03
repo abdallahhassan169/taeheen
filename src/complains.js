@@ -150,6 +150,8 @@ export const upsert_guets_complain = async (req, res) => {
         d.langitude,
         d.latitude,
         d.nationality,
+        d.time,
+        d.position,
       ]
     );
 
@@ -181,6 +183,8 @@ export const upsert_complain = async (req, res) => {
         d.langitude,
         d.latitude,
         d.nationality,
+        d.time,
+        d.position,
       ]
     );
 
