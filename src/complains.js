@@ -125,55 +125,34 @@ export const get_user_complains = async (req, res) => {
 
 export const upsert_guets_complain = async (req, res) => {
   try {
-    if (!req.body.id) {
-      const clientIp = "ip" + req.clientIp;
-      console.log(clientIp);
-      const d = req.body;
-      console.log(d);
-      const imageUrl = `${req.protocol}://${req.get("host")}/image/${
-        req?.file?.filename
-      }`;
-      const rows = await pool.query(
-        ` INSERT INTO public.complains(
+    const clientIp = "ip" + req.clientIp;
+    console.log(clientIp);
+    const d = req.body;
+    console.log(d);
+    const imageUrl = `${req.protocol}://${req.get("host")}/image/${
+      req?.file?.filename
+    }`;
+    const rows = await pool.query(
+      ` INSERT INTO public.complains(
 	  name, relation, age, description, clothes_color, img, user_id, passport , date,ip,city_id , langitude , latitude , nationality)
 	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,($12) , ($13)); `,
-        [
-          d.name,
-          d.relation,
-          d.age,
-          d.description,
-          d.clothes_color,
-          imageUrl,
-          req.user?.id ?? null,
-          req.body.passport,
-          clientIp,
-          req.body.city,
-          d.langitude,
-          d.latitude,
-          d.nationality,
-        ]
-      );
-    } else {
-      //     const d = req.body;
-      //     const imageUrl = `/image/${req?.file?.filename}`;
-      //     const rows = await pool.query(
-      //       `UPDATE public.complains
-      // SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
-      // where id = ($8)
-      //  `,
-      //       [
-      //         d.name,
-      //         d.relation,
-      //         d.age,
-      //         d.description,
-      //         d.clothes_color,
-      //         imageUrl,
-      //         req.body.passport,
-      //         d.id,
-      //       ]
-      //     );
-      return;
-    }
+      [
+        d.name,
+        d.relation,
+        d.age,
+        d.description,
+        d.clothes_color,
+        imageUrl,
+        req.user?.id ?? null,
+        req.body.passport,
+        clientIp,
+        req.body.city,
+        d.langitude,
+        d.latitude,
+        d.nationality,
+      ]
+    );
+
     res.send({ message: "sucseess" });
   } catch (e) {
     res.send({ "error ": e });
@@ -182,50 +161,29 @@ export const upsert_guets_complain = async (req, res) => {
 
 export const upsert_complain = async (req, res) => {
   try {
-    if (!req.body.id) {
-      const d = req.body;
-      console.log(d);
-      const imageUrl = `${req?.file?.filename}`;
-      const rows = await pool.query(
-        ` INSERT INTO public.complains(
+    const d = req.body;
+    console.log(d);
+    const imageUrl = `${req?.file?.filename}`;
+    const rows = await pool.query(
+      ` INSERT INTO public.complains(
 	  name, relation, age, description, clothes_color, img, user_id, passport , date,city_id ,langitude , latitude ,nationality )
 	VALUES (  ($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8) , CURRENT_TIMESTAMP,($9) , ($10) , ($11) ,  ($12)); `,
-        [
-          d.name,
-          d.relation,
-          d.age,
-          d.description,
-          d.clothes_color,
-          imageUrl,
-          req.user?.id ?? null,
-          req.body.passport,
-          req.body.city,
-          d.langitude,
-          d.latitude,
-          d.nationality,
-        ]
-      );
-    } else {
-      return;
-      //     const d = req.body;
-      //     const imageUrl = `/image/${req?.file?.filename}`;
-      //     const rows = await pool.query(
-      //       `UPDATE public.complains
-      // SET   name=($1), relation=($2), age=($3), description=($4), clothes_color= ($5), img=($6),   passport=($7)
-      // where id = ($8)
-      //  `,
-      //       [
-      //         d.name,
-      //         d.relation,
-      //         d.age,
-      //         d.description,
-      //         d.clothes_color,
-      //         imageUrl,
-      //         req.body.passport,
-      //         d.id,
-      //       ]
-      //     );
-    }
+      [
+        d.name,
+        d.relation,
+        d.age,
+        d.description,
+        d.clothes_color,
+        imageUrl,
+        req.user?.id ?? null,
+        req.body.passport,
+        req.body.city,
+        d.langitude,
+        d.latitude,
+        d.nationality,
+      ]
+    );
+
     res.send({ message: "sucseess" });
   } catch (e) {
     res.send({ "error ": e });
