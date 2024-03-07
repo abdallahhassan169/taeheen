@@ -50,17 +50,11 @@ app.post("/login", login);
 app.post(
   "/upsert_guest_complain",
   upload.single("image"),
-  Validator,
   upsert_guets_complain
 );
 app.post("/register", register_user);
 
-app.post(
-  "/upsert_complain",
-  upload.single("image"),
-  Validator,
-  upsert_complain
-);
+app.post("/upsert_complain", upload.single("image"), upsert_complain);
 
 app.post("/get_complains", get_user_complains);
 
