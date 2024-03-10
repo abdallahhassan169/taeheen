@@ -8,7 +8,7 @@ import cors from "cors";
 import requestIp from "request-ip";
 import { login } from "./src/auth/login.js";
 import { emps, upsert_emp } from "./src/employees.js";
-import { change_user_status, register_user, users } from "./src/users.js";
+import { change_user_status, users } from "./src/users.js";
 import { stats } from "./src/statistics.js";
 import {
   admin_coms,
@@ -29,8 +29,11 @@ import {
 import { cities } from "./src/lokkups.js";
 import { isAdmin, isEmployee } from "./src/adminCheck.js";
 import { fileFilter, get_image, storage } from "./src/files.js";
-import { Validator } from "./src/validation/Validator.js";
-
+import {
+  generate_new_code,
+  register_user,
+  verify,
+} from "./src/auth/register.js";
 //------------------------------- declare APP and middlewares
 const app = express();
 
@@ -53,7 +56,8 @@ app.post(
   upsert_guets_complain
 );
 app.post("/register", register_user);
-
+app.post("/verify", verify);
+app.post("/new_code", generate_new_code);
 app.post("/upsert_complain", upload.single("image"), upsert_complain);
 
 app.post("/get_complains", get_user_complains);

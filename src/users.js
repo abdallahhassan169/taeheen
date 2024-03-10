@@ -32,19 +32,3 @@ export const change_user_status = async (req, res) => {
     res.send({ "error ": e });
   }
 };
-
-export const register_user = async (req, res) => {
-  try {
-    const d = req.body;
-    console.log(d);
-    const { rows } = await pool.query(
-      ` INSERT INTO public.users(
-	user_name, password,user_type , city_id ,  passport ,  phone , last_name)
-	VALUES ( ($1), ($2) , 1 , ($3) ,($4) , ($5) , ($6) ); `,
-      [d.user_name, d.password, d.city_id, d.passport, d.phone, d.last_name]
-    );
-    res.send({ message: "sucseess" });
-  } catch (e) {
-    res.send({ "error ": e });
-  }
-};
