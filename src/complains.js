@@ -193,3 +193,18 @@ export const upsert_complain = async (req, res) => {
     res.send({ "error ": e });
   }
 };
+
+export const send_emp_note = async (req, res) => {
+  try {
+    const { note, id } = req.body;
+
+    const rows = await pool.query(
+      ` update public.complains set emp_note = $1 where id = $2 `,
+      [note, id]
+    );
+
+    res.send({ message: "sucseess" });
+  } catch (e) {
+    res.send({ "error ": e });
+  }
+};

@@ -17,6 +17,7 @@ import {
   get_complain_by_id,
   get_emp_coms,
   get_user_complains,
+  send_emp_note,
   upsert_complain,
   upsert_guets_complain,
 } from "./src/complains.js";
@@ -75,6 +76,7 @@ app.post("/complete_complain", end_complain);
 app.post("/get_comments", isAdmin, get_comments);
 
 app.post("/get_emp_complains", isEmployee, get_emp_coms);
+app.post("/send_note", isEmployee, send_emp_note);
 app.post("/get_user_comments", get_user_comments);
 app.post("/get_admin_complains", isAdmin, admin_coms);
 app.post("/get_complain_by_id", get_complain_by_id);
