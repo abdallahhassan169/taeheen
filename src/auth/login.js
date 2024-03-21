@@ -18,7 +18,7 @@ export const login = async (req, res) => {
         user.user_type === "3") || // user type 3 is super admin
       (phone === user.phone &&
         passport === user.passport &&
-        user.phone_verified &&
+        // user.phone_verified &&
         (user.user_type === "1" || user.user_type === "2")) // user type 1 is user and 2 is emp
     ) {
       // Sign a JWT with the user information
