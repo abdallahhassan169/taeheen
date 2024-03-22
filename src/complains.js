@@ -190,6 +190,7 @@ export const upsert_complain = async (req, res) => {
 
     res.send({ message: "sucseess" });
   } catch (e) {
+    console.log(e);
     res.send({ "error ": e });
   }
 };
