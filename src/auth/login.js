@@ -15,11 +15,11 @@ export const login = async (req, res) => {
     if (
       (user_name === user.user_name &&
         password === user.password &&
-        user.user_type === "3") || // user type 3 is super admin
+        user.user_type === "2") || // user type 3 is super admin
       (phone === user.phone &&
         passport === user.passport &&
         // user.phone_verified &&
-        (user.user_type === "1" || user.user_type === "2")) // user type 1 is user and 2 is emp
+        (user.user_type === "1" || user.user_type === "3")) // user type 1 is user and 2 is emp
     ) {
       // Sign a JWT with the user information
       const token = jwt.sign(
