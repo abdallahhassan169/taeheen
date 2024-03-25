@@ -42,7 +42,7 @@ app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(requestIp.mw());
 
-const upload = multer({ storage: storage, fileFilter: fileFilter });
+const upload = multer({ storage: storage /* fileFilter: fileFilter}*/ });
 app.use("/uploads", express.static("uploads"));
 
 app.use([authMiddleware]);

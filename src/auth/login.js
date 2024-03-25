@@ -2,18 +2,18 @@ import pool from "../../config.js";
 import jwt from "jsonwebtoken";
 import { secret } from "../../config.js";
 export const login = async (req, res) => {
-  const { user_name, password, phone, passport } = req.body;
+  const { password, phone, passport } = req.body;
 
   // Mock user database
   const rows = await pool.query(
-    `select * from "public".users where user_name = ($1) or phone = ($2) `,
-    [user_name, phone]
+    `select * from "public".users where     phone = ($1) `,
+    [phone]
   );
 
   const user = rows.rows[0];
   if (user) {
     if (
-      (user_name === user.user_name &&
+      (phone === user.phone &&
         password === user.password &&
         user.user_type === "2") || // user type 2 is super admin
       (phone === user.phone &&
