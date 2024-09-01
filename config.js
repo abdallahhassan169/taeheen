@@ -1,9 +1,9 @@
 import pg from "pg";
 const pool = new pg.Pool({
-  user: "abdallah",
-  host: "dpg-cn9p3rv79t8c73c51vd0-a.oregon-postgres.render.com",
-  database: "complains",
-  password: "NjAo5XQyVpWJNz2KCMPIMDktWzQOLizx",
+  user: "postgres.hvlwysffluesueqcdpim",
+  host: "aws-0-eu-central-1.pooler.supabase.com",
+  database: "Taeheen",
+  password: "Fb8NYexcO90x3Nol",
   port: 5432,
   max: 20, // Adjust as needed
   idleTimeoutMillis: 30000, // Adjust as needed
